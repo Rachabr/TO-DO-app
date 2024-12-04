@@ -1,0 +1,80 @@
+/* Style du sidepanel */
+.side-panel {
+  position: fixed;
+  top: 0;
+  left: -250px; /* Cacher le panel par défaut */
+  width: 250px;
+  height: 100%;
+  background:#ffefef;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+  transition: left 0.3s ease-in-out;
+}
+
+.side-panel.show {
+  left: 0; /* Montrer le sidepanel */
+}
+
+.side-panel.hide {
+  left: -250px; /* Cacher le sidepanel */
+}
+
+/* Style du bouton pour ouvrir/fermer */
+.toggle-btn {
+  position: absolute;
+  top: 10px;
+  right: -50px; /* Positionne le bouton hors du panel */
+  width: 40px;
+  height: 40px;
+  background-color: hsl(329, 100%, 76%);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.toggle-btn:hover {
+  background-color: hsl(329, 80%, 70%);
+}
+
+/* Contenu du menu (visible uniquement lorsque le sidepanel est ouvert) */
+.menu-content {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.menu-content h2 {
+  text-align: center;
+  font-size: 1.5rem;
+  color: black;
+}
+
+.menu-content button {
+  background-color: rgb(255, 143, 162);
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.menu-content button:hover {
+  background-color: hsl(329, 100%, 76%);
+}
+
+.menu-content a {
+  text-decoration: none;
+  color: inherit;
+}

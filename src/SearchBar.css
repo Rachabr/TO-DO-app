@@ -1,0 +1,17 @@
+/* Styles pour la barre de recherche */
+input[type="text"] {
+    width: calc(100% - (150px + (10 * (1 + (100vw -600) / (1200 -600))))); /* Ajustement dynamique selon la taille de l'écran*/
+    padding:12px;
+    margin-bottom:20px;
+    border-radius:6px;
+    border:none;
+    
+}
+
+input[type="text"]:focus {
+   outline:none;
+   box-shadow:none ;
+   border-bottom :2px solid rgba(250, 249, 249, 0.5);
+   border: 1px solid #111111;
+   border-radius: 6px;
+}

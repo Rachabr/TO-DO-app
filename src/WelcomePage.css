@@ -1,0 +1,47 @@
+.welcome-page { 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 0;
+    background: linear-gradient(to bottom, hsl(33, 100%, 76%), hsl(320, 100%, 90%));
+    animation: fade-in 1s ease-out;
+  }
+  @keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+  
+}
+
+  .welcome-page h1 {
+    font-size: 4rem; /* Taille de la police */
+    font-family:Georgia, 'Times New Roman', Times, serif; /* Change la famille de police */
+    font-weight: bold; /* Rend le texte en gras */
+    color: #eff2b9; /* Une couleur dorée */
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7); /* Ajoute un effet d'ombre */
+    animation: text-glow 2s infinite alternate; /* Effet de lumière douce */
+  
+  }
+  
+  .welcome-page button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    background-color: rgb(241, 169, 181);
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .welcome-page button:hover {
+    background-color: rgb(250, 140, 181);
+  }
+  
