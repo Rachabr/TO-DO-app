@@ -1,48 +1,57 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Importation de useNavigate
-import './LoginPage.css'; // Import LoginPage CSS
+import { useNavigate } from 'react-router-dom'; // Import de useNavigate
+import './LoginPage.css';
 
 const LoginPage = ({ onLogin }) => {
-    const navigate = useNavigate(); // Utilisation de useNavigate pour la redirection
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+  const navigate = useNavigate(); // Hook pour rediriger
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [message, setMessage] = useState('');
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
+  const handleLogin = (e) => {
+    e.preventDefault();
+    if (username === 'user' && password === 'password') {
+      onLogin(); // Appel de la fonction onLogin
+      setMessage('Login successful!');
+      navigate('/'); // Redirection vers la page d'accueil
+    } else {
+      setMessage('Invalid username or password.');
+    }
+  };
 
-        // Basic login validation (you can improve this)
-        if (username === 'user' && password === 'password') {
-            onLogin(); // Appel de la fonction onLogin passée de App.js
-            navigate('/'); // Redirection vers la page d'accueil après connexion réussie
-        } else {
-            alert('Invalid username or password');
-        }
-    };
-
-    return (
-        <div className="login-container">
-            <h2>Login</h2>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <input
-                        type="text"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                        placeholder="Username"
-                    />
-                </div>
-                <div>
-                    <input
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        placeholder="Password"
-                    />
-                </div>
-                <button type="submit">Login</button> {/* Le bouton de connexion */}
-            </form>
-        </div>
-    );
+  return (
+    <div className="login-container">
+      <div className="login-card">
+        <h1>Login</h1>
+        <form onSubmit={handleLogin}>
+          <div className="form-group">
+            <label htmlFor="username">Username:</label>
+            <input
+              type="text"
+              id="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="password">Password:</label>
+            <input
+              type="password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <button type="submit" className="login-button">
+            Login
+          </button>
+        </form>
+        {message && <p className="message">{message}</p>}
+      </div>
+    </div>
+  );
 };
 
 export default LoginPage;

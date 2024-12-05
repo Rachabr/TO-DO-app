@@ -40,7 +40,7 @@
     display: block;
     width: 100%;
     text-align: center;
-    background-color: #007bff;
+    background-color: rgb(255, 143, 162);
     color: white;
     border: none;
     padding: 10px 20px;
@@ -50,6 +50,6 @@
   }
   
   .home-button:hover {
-    background-color: #0056b3;
+    background-color:hsl(329, 100%, 76%);
   }
   

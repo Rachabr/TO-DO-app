@@ -25,7 +25,7 @@ const SidePanel = () => {
             <button onClick={() => alert('Ajouter une tâche')}>Ajouter une tâche</button>
             <button onClick={() => alert('Voir les tâches')}>Voir les tâches</button>
             <button onClick={() => alert('Notifications')}>Notifications</button>
-            <button onClick={() => alert('Déconnexion')}>Déconnexion</button>
+            <button onClick= {onLogin} >Déconnexion</button>
           </div>
         )}
       </div>
