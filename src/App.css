@@ -69,7 +69,7 @@ li.completed {
 
 /* Styles pour les boutons dans la liste des tâches */
 li button {
-    background-color: #f443369c; 
+    background-color: #ebcfeb9c; 
     border-radius:50%; 
     padding:10px; /* Ajustement du padding */
     
@@ -80,7 +80,7 @@ li button {
 }
 
 li button:hover {
-    background-color:#d32f2f; 
+    background-color:#d4b3d49c; 
 }
 
 /*pour les categories*/
@@ -100,7 +100,7 @@ select {
 
 /* Style au survol du bouton de catégorie */
 select:hover {
-  background-color: palevioletred; /* Couleur de fond plus foncée au survol */
+  background-color: #d4b3d49c;  /* Couleur de fond plus foncée au survol */
 }
 
 /* Style au focus du bouton de catégorie */
@@ -141,15 +141,18 @@ select:focus {
 /* Dark Mode Styles */
 
 .dark-mode {
-  background-color: #2c3e50;
+  background-color: #1a1b1c;
   /* Dark background for the app */
-  color: white;
+  
 }
 
 .dark-mode .App {
-  background-color: #34495e;
+  background-color: #252728;
   /* Dark background for the app container */
 }
+
+
+
 
 h1 {
   color: #333;

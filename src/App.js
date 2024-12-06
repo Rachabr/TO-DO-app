@@ -9,18 +9,12 @@ import LogoPage from './LogoPage';  // Import de LogoPage
 import SearchBar from './SearchBar'; // Import de SearchBar
 import FAQ from './FAQ';
 
-
-
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // État pour savoir si l'utilisateur est connecté
   const [showWelcome, setShowWelcome] = useState(true);
   const [showLogoPage, setShowLogoPage] = useState(false); // État pour afficher la LogoPage après WelcomePage
   const [showLoginPage, setShowLoginPage] = useState(false); // État pour afficher la LoginPage après LogoPage
   const [isDarkMode, setIsDarkMode] = useState(false); // Dark mode state
-
-
-
-
 
   useEffect(() => {
     if (showWelcome) {
@@ -116,58 +110,44 @@ function App() {
     task.text.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-
-    // Toggle dark mode
-    const toggleDarkMode = () => {
-      setIsDarkMode(!isDarkMode);
+  // Toggle dark mode
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
   };
 
   // Apply dark mode class to body
   useEffect(() => {
-      if (isDarkMode) {
-          document.body.classList.add('dark-mode');
-      } else {
-          document.body.classList.remove('dark-mode');
-      }
+    if (isDarkMode) {
+      document.body.classList.add('dark-mode');
+    } else {
+      document.body.classList.remove('dark-mode');
+    }
   }, [isDarkMode]);
-
-
-
-
 
   return (
     <Router>
-     
       <div className="App">
-
-     
-      
-       { /* Dark Mode Button */ } 
-       
-        <button onClick = { toggleDarkMode }
-        style = {
-            { position: 'absolute', top: '20px', right: '20px' }
-        } > { isDarkMode ? 'Light Mode' : 'Dark Mode' } 
+        { /* Dark Mode Button */ } 
+        <button onClick={toggleDarkMode} style={{ position: 'absolute', top: '20px', right: '20px' }}>
+          {isDarkMode ? 'Light Mode' : 'Dark Mode'}
         </button>
-        
+
         {showWelcome ? (
-          <WelcomePage onSkip={handleSkip} /> // Affiche la WelcomePage d'abord
+          <WelcomePage onSkip={handleSkip} />
         ) : showLogoPage ? (
-          <LogoPage /> // Affiche la LogoPage après la WelcomePage
+          <LogoPage />
         ) : showLoginPage ? (
-          <LoginPage onLogin={() => { handleLogin(); setShowLoginPage(false); }} /> // Affiche la LoginPage après la LogoPage
+          <LoginPage onLogin={() => { handleLogin(); setShowLoginPage(false); }} />
         ) : (
           <>
             {isLoggedIn ? (
               <>
-                <SidePanel /> {/* Affiche le panneau latéral */}
+                <SidePanel />
                 <Routes>
                   <Route path="/" element={
                     <>
                       <h1>Ma Liste de Tâches</h1>
-                      {/* Ajout du SearchBar ici */}
                       <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-
                       <input
                         type="text"
                         value={task}
@@ -180,19 +160,15 @@ function App() {
                         <option value="Liste de souhaits">Liste de souhaits</option>
                         <option value="Anniversaire">Anniversaire</option>
                       </select>
-
                       <select value={priority} onChange={(e) => setPriority(e.target.value)}>
                         <option value="">Choisir une priorité</option>
-                        <option value="faible">Faible </option>
-                        <option value="moyenne">Moyenne </option>
-                        <option value="elevee">Élevée </option>
+                        <option value="faible">Faible</option>
+                        <option value="moyenne">Moyenne</option>
+                        <option value="elevee">Élevée</option>
                       </select>
-
                       <button onClick={editIndex !== null ? saveTask : addTask}>
                         {editIndex !== null ? 'Modifier' : 'Ajouter'}
                       </button>
-
-                      {/* Liste des tâches filtrées */}
                       <ul>
                         {filteredTasks.map((task, index) => (
                           <li key={index} className={task.isComplete ? 'completed' : ''}>
@@ -200,10 +176,10 @@ function App() {
                               {task.text} <small>({task.category})</small>
                             </span>
                             <div className={`priority-circle ${task.priority}`} />
-                            <button onClick={() => editTask(index)}>Modifier</button>
-                            <button onClick={() => deleteTask(index)}>Supprimer</button>
+                            <button onClick={() => editTask(index)}>{'✏️'}</button>
+                            <button onClick={() => deleteTask(index)}>{'🗑️'}</button>
                             <button onClick={() => toggleComplete(index)}>
-                              {task.isComplete ? 'Marquer Incomplète' : 'Marquer Complète'}
+                              {task.isComplete ? '✅ Marquer Incomplète' : '✅'}
                             </button>
                           </li>
                         ))}
@@ -212,12 +188,10 @@ function App() {
                   } />
                   <Route path="/settings" element={<Settings />} />
                   <Route path="/FAQ" element={<FAQ />} />
-                  
-                  
                 </Routes>
               </>
             ) : (
-              <Navigate to="/login" /> // Redirige vers la LoginPage si non connecté
+              <Navigate to="/login" />
             )}
           </>
         )}

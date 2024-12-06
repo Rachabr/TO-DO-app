@@ -1,5 +1,4 @@
 
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate for redirection
 import { Link } from 'react-router-dom';
@@ -26,7 +25,7 @@ const SidePanel = () => {
     <div>
       <div className={`side-panel ${isVisible ? 'show' : 'hide'}`}>
         <button className="toggle-btn" onClick={toggleSidePanel}>
-          {isVisible ? "Fermer" : "Menu"}
+          {isVisible ? "❌" : "☰"}
         </button>
         {isVisible && (
           <div className="menu-content">
@@ -46,8 +45,10 @@ const SidePanel = () => {
             <button>
               <Link to="/FAQ">FAQ</Link>
             </button>
-            {/* Deconnexion button to trigger logout */}
-            <button onClick={handleLogout}>Deconnexion</button>
+          
+            <button>
+              <Link to="/Login">Deconnexion</Link>
+            </button>
           </div>
         )}
       </div>

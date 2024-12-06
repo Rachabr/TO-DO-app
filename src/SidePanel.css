@@ -78,3 +78,8 @@
   text-decoration: none;
   color: inherit;
 }
+
+.dark-mode .SidePannel {
+  background-color: #252728;
+  /* Dark background for the app container */
+}

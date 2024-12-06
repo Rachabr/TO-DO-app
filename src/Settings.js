@@ -23,12 +23,7 @@ function Settings() {
     setNotificationsEnabled((prev) => !prev);
   };
 
-  // Toggle dark mode
-  const toggleDarkMode = () => {
-    setDarkMode((prev) => !prev);
-    document.body.style.backgroundColor = darkMode ? '#fff' : '#333';
-    document.body.style.color = darkMode ? '#000' : '#fff';
-  };
+ 
 
   // Handle sorting option change
   const handleSortOptionChange = (e) => {
@@ -92,18 +87,7 @@ function Settings() {
         </label>
       </div>
       
-      {/* Section for Dark Mode */}
-      <div className="setting-item">
-        <h3>Mode Sombre</h3>
-        <label>
-          <input
-            type="checkbox"
-            checked={darkMode}
-            onChange={toggleDarkMode}
-          />
-          Activer le mode sombre
-        </label>
-      </div>
+      
 
       {/* Section for Sorting Tasks */}
       <div className="setting-item">
