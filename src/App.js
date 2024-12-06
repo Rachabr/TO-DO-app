@@ -7,6 +7,9 @@ import Settings from './Settings';  // Assurez-vous que le chemin est correct
 import LoginPage from './LoginPage'; // Import du composant LoginPage
 import LogoPage from './LogoPage';  // Import de LogoPage
 import SearchBar from './SearchBar'; // Import de SearchBar
+import FAQ from './FAQ';
+
+
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // État pour savoir si l'utilisateur est connecté
@@ -136,6 +139,8 @@ function App() {
     <Router>
      
       <div className="App">
+
+     
       
        { /* Dark Mode Button */ } 
        
@@ -206,7 +211,7 @@ function App() {
                     </>
                   } />
                   <Route path="/settings" element={<Settings />} />
-                  
+                  <Route path="/FAQ" element={<FAQ />} />
                 </Routes>
               </>
             ) : (

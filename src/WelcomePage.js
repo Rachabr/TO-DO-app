@@ -5,7 +5,7 @@ const WelcomePage = ({ onSkip }) => {
   return (
     <div className="welcome-page">
       <h1>Welcome!</h1>
-      <button onClick={onSkip}>Skip</button>
+      
     </div>
   );
 };

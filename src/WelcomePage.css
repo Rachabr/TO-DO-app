@@ -30,18 +30,3 @@
   
   }
   
-  .welcome-page button {
-    padding: 10px 20px;
-    font-size: 1rem;
-    border: none;
-    background-color: rgb(241, 169, 181);
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .welcome-page button:hover {
-    background-color: rgb(250, 140, 181);
-  }
-  

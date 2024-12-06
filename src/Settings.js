@@ -8,41 +8,69 @@ function Settings() {
   const [notificationsEnabled, setNotificationsEnabled] = useState(true);
   const [darkMode, setDarkMode] = useState(false);
   const [sortOption, setSortOption] = useState('date');
+  const [email, setEmail] = useState('user@example.com');
+  const [privacySetting, setPrivacySetting] = useState('public');
+  const [fontSize, setFontSize] = useState('medium');
+  const [backupStatus, setBackupStatus] = useState(null); // null initially, to show button
 
-  // Navigation
-  const goHome = () => {
-    navigate('/'); // Redirige vers la page d'accueil
-  };
-
-  // Gestion de la langue
+  // Handle language change
   const handleLanguageChange = (e) => {
     setLanguage(e.target.value);
   };
 
-  // Gestion des notifications
+  // Toggle notifications
   const toggleNotifications = () => {
     setNotificationsEnabled((prev) => !prev);
   };
 
-  // Gestion du mode sombre
+  // Toggle dark mode
   const toggleDarkMode = () => {
     setDarkMode((prev) => !prev);
     document.body.style.backgroundColor = darkMode ? '#fff' : '#333';
     document.body.style.color = darkMode ? '#000' : '#fff';
   };
 
-  // Gestion du tri des tâches
+  // Handle sorting option change
   const handleSortOptionChange = (e) => {
     setSortOption(e.target.value);
+  };
+
+  // Handle email change
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  // Handle privacy setting change
+  const handlePrivacyChange = (e) => {
+    setPrivacySetting(e.target.value);
+  };
+
+  // Handle font size change
+  const handleFontSizeChange = (e) => {
+    setFontSize(e.target.value);
+    document.body.style.fontSize = e.target.value === 'large' ? '18px' : e.target.value === 'small' ? '12px' : '16px';
+  };
+
+  // Handle backup
+  const handleBackup = () => {
+    setBackupStatus('in-progress');
+    setTimeout(() => {
+      setBackupStatus('completed');
+    }, 2000); // Simulate backup process
+  };
+
+  // Navigate to the previous page or home (if needed)
+  const goBack = () => {
+    navigate(-1); // Or use navigate('/') to go home
   };
 
   return (
     <div className="settings-container">
       <h2>Paramètres</h2>
       
-      {/* Section Langues */}
+      {/* Section for Language Settings */}
       <div className="setting-item">
-        <h3>Langues</h3>
+        <h3>Langue</h3>
         <select value={language} onChange={handleLanguageChange}>
           <option value="fr">Français</option>
           <option value="en">Anglais</option>
@@ -51,7 +79,7 @@ function Settings() {
         </select>
       </div>
       
-      {/* Section Notifications */}
+      {/* Section for Notifications */}
       <div className="setting-item">
         <h3>Notifications</h3>
         <label>
@@ -64,7 +92,7 @@ function Settings() {
         </label>
       </div>
       
-      {/* Section Mode sombre */}
+      {/* Section for Dark Mode */}
       <div className="setting-item">
         <h3>Mode Sombre</h3>
         <label>
@@ -77,7 +105,7 @@ function Settings() {
         </label>
       </div>
 
-      {/* Section Tri des tâches */}
+      {/* Section for Sorting Tasks */}
       <div className="setting-item">
         <h3>Trier les tâches</h3>
         <select value={sortOption} onChange={handleSortOptionChange}>
@@ -86,11 +114,52 @@ function Settings() {
           <option value="category">Catégorie</option>
         </select>
       </div>
-      
-      {/* Bouton pour revenir à la page d'accueil */}
-      <button onClick={goHome} className="home-button">
-        Retour à l'accueil
-      </button>
+
+      {/* Section for Account Settings */}
+      <div className="setting-item">
+        <h3>Paramètres du compte</h3>
+        <label>
+          <span>Email: </span>
+          <input type="email" value={email} onChange={handleEmailChange} />
+        </label>
+      </div>
+
+      {/* Section for Privacy Settings */}
+      <div className="setting-item">
+        <h3>Paramètres de confidentialité</h3>
+        <select value={privacySetting} onChange={handlePrivacyChange}>
+          <option value="public">Public</option>
+          <option value="private">Privé</option>
+        </select>
+      </div>
+
+      {/* Section for Font Size */}
+      <div className="setting-item">
+        <h3>Taille de la police</h3>
+        <select value={fontSize} onChange={handleFontSizeChange}>
+          <option value="small">Petite</option>
+          <option value="medium">Moyenne</option>
+          <option value="large">Grande</option>
+        </select>
+      </div>
+
+      {/* Section for Backup */}
+      <div className="setting-item backup-section">
+        <h3>Sauvegarde</h3>
+        {/* Conditional rendering for button and backup status */}
+        {backupStatus === null ? (
+          <button onClick={handleBackup}>Sauvegarder les données</button>
+        ) : backupStatus === 'in-progress' ? (
+          <p>Sauvegarde en cours...</p>
+        ) : (
+          <p>Sauvegarde terminée</p>
+        )}
+      </div>
+
+      {/* Button to go back to the previous page */}
+      <div className="back-button">
+        <button onClick={goBack}>Retour</button>
+      </div>
     </div>
   );
 }
