@@ -95,3 +95,23 @@
     color: red;
   }
   
+  /* Style général pour les liens */
+.link {
+  color: hsl(329, 100%, 76%);
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 1rem;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+/* Effet au survol */
+.link:hover {
+  color: hsl(329, 100%, 85%);
+  text-shadow: 0px 0px 8px hsl(329, 100%, 85%);
+}
+
+/* Effet au clic */
+.link:active {
+  color: hsl(329, 84%, 83%);
+  text-shadow: 0px 0px 10px hsl(329, 74%, 85%);
+}

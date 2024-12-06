@@ -38,7 +38,7 @@ function App() {
       const timer = setTimeout(() => {
         setShowLogoPage(false); // Cache la LogoPage
         setShowLoginPage(true);  // Affiche la LoginPage après la LogoPage
-      }, 2000); // Affiche la LogoPage pendant 2 secondes
+      }, 10000); // Affiche la LogoPage pendant 2 secondes
 
       return () => clearTimeout(timer); // Nettoyage du timer
     }
@@ -212,6 +212,8 @@ function App() {
                   } />
                   <Route path="/settings" element={<Settings />} />
                   <Route path="/FAQ" element={<FAQ />} />
+                  
+                  
                 </Routes>
               </>
             ) : (

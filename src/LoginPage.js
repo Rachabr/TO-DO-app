@@ -1,29 +1,51 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import de useNavigate
+import { useNavigate } from 'react-router-dom';
 import './LoginPage.css';
 
 const LoginPage = ({ onLogin }) => {
-  const navigate = useNavigate(); // Hook pour rediriger
+  const [isSignup, setIsSignup] = useState(false);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState(''); // For signup only
   const [message, setMessage] = useState('');
+  const navigate = useNavigate(); // For navigation
 
-  const handleLogin = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    if (username === 'user' && password === 'password') {
-      onLogin(); // Appel de la fonction onLogin
-      setMessage('Login successful!');
-      navigate('/'); // Redirection vers la page d'accueil
+
+    if (isSignup) {
+      // Signup validation
+      if (!username || !password || !confirmPassword) {
+        setMessage('All fields are required.');
+        return;
+      }
+
+      if (password !== confirmPassword) {
+        setMessage('Passwords do not match.');
+        return;
+      }
+
+      // Simulate successful signup
+      setMessage('Signup successful!');
+      onLogin(); // Simulate user login
+      navigate('/'); // Redirect to home/dashboard page
     } else {
-      setMessage('Invalid username or password.');
+      // Login validation
+      if (username === 'user' && password === 'password') {
+        setMessage('Login successful!');
+        onLogin(); // Simulate user login
+        navigate('/'); // Redirect to home/dashboard page
+      } else {
+        setMessage('Invalid username or password.');
+      }
     }
   };
 
   return (
     <div className="login-container">
       <div className="login-card">
-        <h1>Login</h1>
-        <form onSubmit={handleLogin}>
+        <h1>{isSignup ? 'Sign Up' : 'Login'}</h1>
+        <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="username">Username:</label>
             <input
@@ -44,11 +66,29 @@ const LoginPage = ({ onLogin }) => {
               required
             />
           </div>
+          {isSignup && (
+            <div className="form-group">
+              <label htmlFor="confirmPassword">Confirm Password:</label>
+              <input
+                type="password"
+                id="confirmPassword"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                required
+              />
+            </div>
+          )}
           <button type="submit" className="login-button">
-            Login
+            {isSignup ? 'Sign Up' : 'Login'}
           </button>
         </form>
         {message && <p className="message">{message}</p>}
+        <p>
+          {isSignup ? "Already have an account?" : "Don't have an account?"}{' '}
+          <span className="link" onClick={() => setIsSignup(!isSignup)}>
+            {isSignup ? 'Login' : 'Register'}
+          </span>
+        </p>
       </div>
     </div>
   );

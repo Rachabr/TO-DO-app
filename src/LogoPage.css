@@ -1,25 +1,71 @@
-/* Styles for LoginPage, ensure it aligns with the styles in your App.css */
-
-
-
-.login-form input {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-}
-
-.login-form button {
-    width: 100%;
-    padding: 10px;
-    background-color: #eab0eb;
+.container {
+    text-align: center;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .highlight {
+    color: hsl(316, 78%, 77%);
+    font-weight: bold;
+  }
+  
+  .features {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px; /* Ajoute de l'espace entre les éléments */
+  }
+  
+  .feature-item {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+    padding: 15px; /* Ajoute du padding interne */
+    border: 1px solid #ddd; /* Ajoute une bordure légère pour séparer les éléments */
+    border-radius: 10px; /* Coins arrondis */
+    width: 90%; /* Ajuste la largeur pour une meilleure présentation */
+    max-width: 500px; /* Limite la largeur pour les grands écrans */
+    background-color: #f9f9f9; /* Couleur de fond légère */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ajoute une ombre douce */
+  }
+  
+  .feature-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .icon {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .feature-title {
+    font-size: 1.3rem;
+    margin: 0 0 10px 0;
+  }
+  
+  .feature-description {
+    font-size: 1rem;
+    color: #555;
+  }
+  
+  .button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1rem;
     color: white;
+    background-color: rgb(255, 143, 162);
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     cursor: pointer;
-}
-
-.login-form button:hover {
-    background-color: #abbfd3;
-}
+  }
+  
+  .button:hover {
+    background-color: hsl(329, 100%, 76%);
+  }
+  

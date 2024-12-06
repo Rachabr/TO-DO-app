@@ -1,41 +1,53 @@
+
+
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate for redirection
 import { Link } from 'react-router-dom';
 import './SidePanel.css';
 
 const SidePanel = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const navigate = useNavigate(); // Initialize navigate
 
   const toggleSidePanel = () => {
     setIsVisible(!isVisible);
   };
 
+  const handleLogout = () => {
+    // Optional: Clear session data or authentication token
+    localStorage.removeItem('authToken'); // Example of clearing token from localStorage
+    sessionStorage.clear(); // Clear sessionStorage (if used)
+
+    // Navigate to the login page after logging out
+    navigate('/login');
+  };
+
   return (
     <div>
       <div className={`side-panel ${isVisible ? 'show' : 'hide'}`}>
-        {/* Bouton pour ouvrir/fermer placé à l'intérieur du sidepanel */}
         <button className="toggle-btn" onClick={toggleSidePanel}>
           {isVisible ? "Fermer" : "Menu"}
         </button>
         {isVisible && (
           <div className="menu-content">
             <h2>Menu</h2>
-            {/* Use Link for "Acceuil" to navigate to home */}
             <button>
               <Link to="/">Acceuil</Link>
             </button>
-
             <button>
               <Link to="/Settings">Paramètres</Link>
             </button>
-
             <button onClick={() => alert('Ajouter une tâche')}>Ajouter une tâche</button>
             <button onClick={() => alert('Voir les tâches')}>Voir les tâches</button>
-            <button onClick={() => alert('Dashboard')}>Dashboard</button>
+            <button>
+              <Link to="/Dashboard">Dashboard</Link>
+            </button>
             <button onClick={() => alert('Notifications')}>Notifications</button>
             <button>
               <Link to="/FAQ">FAQ</Link>
             </button>
-            <button onClick={() => alert('Deconnexion')}>Deconnexion</button>
+            {/* Deconnexion button to trigger logout */}
+            <button onClick={handleLogout}>Deconnexion</button>
           </div>
         )}
       </div>
