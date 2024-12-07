@@ -1,0 +1,78 @@
+/* Style général de la section des statistiques */
+.task-stats {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  margin-top: 50px;
+}
+
+h2 {
+  font-size: 1.6em; /* Réduit la taille du titre */
+  margin-bottom: 20px;
+}
+
+/* Réduction de la taille et espacement des textes */
+p {
+  font-size: 1em; /* Réduit la taille des paragraphes */
+  margin: 8px 0;  /* Espacement plus large entre les paragraphes */
+}
+
+/* Conteneur du tuyau d'orgue */
+.pipe-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  height: 200px;
+  margin-top: 30px;
+}
+
+/* Barres du tuyau d'orgue */
+.pipe {
+  width: 30px;
+  margin: 0 25px;
+  border-radius: 10px;
+  transition: height 0.5s ease-out;
+  position: relative;
+}
+
+/* Coloration en fonction du statut */
+.completed {
+  background-color: #dfb6ec; /* Vert pour les tâches terminées */
+}
+
+.pending {
+  background-color: #ba8ab8; /* Jaune pour les tâches en cours */
+}
+
+.total {
+  background-color: #deb3c4; /* Bleu pour le total des tâches */
+}
+
+/* Texte en haut de chaque barre pour afficher les valeurs */
+.pipe span {
+  position: absolute;
+  bottom: 100%;
+  font-size: 14px;
+  color: #a59e9e;
+  transform: translateX(-50%);
+}
+
+/* Disposition des statistiques dans des boîtes */
+.stat-boxes {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 20px;
+}
+
+/* Espacement entre chaque boîte */
+.stat-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 5 15px;
+
+}
+
+.stat-box p {
+  font-size: 0.9em; /* Taille plus petite pour le texte */
+  margin: 5px 0;    /* Espacement plus léger */
+}

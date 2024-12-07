@@ -71,7 +71,7 @@
 }
 
 .menu-content button:hover {
-  background-color: hsl(329, 100%, 76%);
+  background-color: rgb(253, 163, 178);
 }
 
 .menu-content a {

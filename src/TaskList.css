@@ -1,0 +1,25 @@
+.task-list {
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 95%;
+  }
+  
+  .task-item {
+    list-style: none;
+    margin: 5px 0;
+    padding: 5px;
+    border-radius: 5px;
+  }
+  
+  .task-item.terminé {
+    background-color: #d4edda;
+  }
+  
+  .task-item.en-cours {
+    background-color: #fff3cd;
+  }
+  
+  .task-item.en-attente {
+    background-color: #f8d7da;
+  }
+  

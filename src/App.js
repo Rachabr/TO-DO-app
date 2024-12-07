@@ -8,6 +8,10 @@ import LoginPage from './LoginPage'; // Import du composant LoginPage
 import LogoPage from './LogoPage';  // Import de LogoPage
 import SearchBar from './SearchBar'; // Import de SearchBar
 import FAQ from './FAQ';
+import Dashboard from './Dashboard';
+
+
+
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // État pour savoir si l'utilisateur est connecté
@@ -16,6 +20,23 @@ function App() {
   const [showLoginPage, setShowLoginPage] = useState(false); // État pour afficher la LoginPage après LogoPage
   const [isDarkMode, setIsDarkMode] = useState(false); // Dark mode state
 
+
+  
+  const App = () => {
+    const [tasks, setTasks] = useState([
+      { id: 1, title: 'Créer le frontend', status: 'En cours' },
+      { id: 2, title: 'Tester les fonctionnalités', status: 'Terminé' },
+      { id: 3, title: 'Corriger les bugs', status: 'En attente' },
+    ]);
+  
+    // Ajouter une tâche
+    const addTask = (title, status) => {
+      const newTask = { id: tasks.length + 1, title, status };
+      setTasks([...tasks, newTask]);
+    };
+  }
+ 
+  
   useEffect(() => {
     if (showWelcome) {
       const timer = setTimeout(() => {
@@ -32,7 +53,7 @@ function App() {
       const timer = setTimeout(() => {
         setShowLogoPage(false); // Cache la LogoPage
         setShowLoginPage(true);  // Affiche la LoginPage après la LogoPage
-      }, 10000); // Affiche la LogoPage pendant 2 secondes
+      }, 4000); // Affiche la LogoPage pendant 2 secondes
 
       return () => clearTimeout(timer); // Nettoyage du timer
     }
@@ -99,11 +120,7 @@ function App() {
     }
   };
 
-  const toggleComplete = (index) => {
-    const updatedTasks = [...tasks];
-    updatedTasks[index].isComplete = !updatedTasks[index].isComplete;
-    setTasks(updatedTasks);
-  };
+
 
   // Filtrage des tâches en fonction du terme de recherche
   const filteredTasks = tasks.filter(task =>
@@ -124,6 +141,42 @@ function App() {
     }
   }, [isDarkMode]);
 
+  const changeStatus = (index) => {
+    const updatedTasks = [...tasks];
+    const currentStatus = updatedTasks[index].status;
+  
+    // Toggle status between "En cours", "Terminé", and "En attente"
+    let newStatus;
+    if (currentStatus === 'En cours') {
+      newStatus = 'En attente';
+    } else if (currentStatus === '  En attente') {
+      newStatus = 'En cours';
+    } else {
+      newStatus = 'En cours';
+    }
+  
+    updatedTasks[index].status = newStatus;
+    setTasks(updatedTasks);
+  };
+  
+  const toggleComplete = (index) => {
+    const updatedTasks = [...tasks];
+    const task = updatedTasks[index];
+  
+    // Toggle the isComplete state
+    task.isComplete = !task.isComplete;
+  
+    // Update status based on isComplete
+    if (task.isComplete) {
+      task.status = 'Terminé';
+    } else {
+      task.status = 'En attente';
+    }
+  
+    setTasks(updatedTasks);
+  };
+  
+
   return (
     <Router>
       <div className="App">
@@ -131,6 +184,9 @@ function App() {
         <button onClick={toggleDarkMode} style={{ position: 'absolute', top: '20px', right: '20px' }}>
           {isDarkMode ? 'Light Mode' : 'Dark Mode'}
         </button>
+           
+
+        
 
         {showWelcome ? (
           <WelcomePage onSkip={handleSkip} />
@@ -161,7 +217,7 @@ function App() {
                         <option value="Anniversaire">Anniversaire</option>
                       </select>
                       <select value={priority} onChange={(e) => setPriority(e.target.value)}>
-                        <option value="">Choisir une priorité</option>
+                        <option value="">priorité</option>
                         <option value="faible">Faible</option>
                         <option value="moyenne">Moyenne</option>
                         <option value="elevee">Élevée</option>
@@ -170,24 +226,42 @@ function App() {
                         {editIndex !== null ? 'Modifier' : 'Ajouter'}
                       </button>
                       <ul>
-                        {filteredTasks.map((task, index) => (
-                          <li key={index} className={task.isComplete ? 'completed' : ''}>
-                            <span onClick={() => toggleComplete(index)} style={{ cursor: 'pointer' }}>
-                              {task.text} <small>({task.category})</small>
-                            </span>
-                            <div className={`priority-circle ${task.priority}`} />
-                            <button onClick={() => editTask(index)}>{'✏️'}</button>
-                            <button onClick={() => deleteTask(index)}>{'🗑️'}</button>
-                            <button onClick={() => toggleComplete(index)}>
-                              {task.isComplete ? '✅ Marquer Incomplète' : '✅'}
-                            </button>
-                          </li>
-                        ))}
-                      </ul>
+  {filteredTasks.map((task, index) => (
+    <li key={task.id} className={task.isComplete ? 'completed' : ''}>
+      <span onClick={() => toggleComplete(index)} style={{ cursor: 'pointer' }}>
+        {task.text} <small>({task.category})</small>
+        <small> - {task.status}</small> {/* Display the task status */}
+      </span>
+
+      {/* Display priority */}
+      <div className={`priority-circle ${task.priority}`} />
+
+      {/* Change status button */}
+      <button onClick={() => changeStatus(index)}>
+        statut
+      </button>
+
+      {/* Edit and delete buttons */}
+      <button onClick={() => editTask(index)}>✏️</button>
+      <button onClick={() => deleteTask(index)}>🗑️</button>
+
+      {/* Complete/Incomplete toggle button */}
+      <button onClick={() => toggleComplete(index)}>
+        {task.isComplete ? '❌' : '✅'}
+      </button> 
+    </li>
+  ))}
+</ul>
+
                     </>
                   } />
                   <Route path="/settings" element={<Settings />} />
                   <Route path="/FAQ" element={<FAQ />} />
+                   {/* Dashboard */}
+                <Route
+                  path="/Dashboard"
+                  element={<Dashboard tasks={tasks} addTask={addTask} />}
+                />
                 </Routes>
               </>
             ) : (

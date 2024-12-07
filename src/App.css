@@ -87,21 +87,22 @@ li button:hover {
 /* Style pour le bouton de catégorie */
 select {
   background-color: rgb(241, 169, 181); /* Couleur de fond similaire aux autres boutons */
-  color: rgb(48, 46, 46);              /* Texte en blanc */
+  color: rgb(48, 46, 46);                /* Texte en blanc */
   padding: 10px 15px;        /* Espacement intérieur */
   font-size: 16px;           /* Taille du texte */
   border: none;              /* Enlever la bordure par défaut */
   border-radius: 7px;        /* Coins arrondis */
   cursor: pointer;           /* Curseur en forme de main */
-  transition: background-color 0.3s ease; /* Animation au survol */
+  transition: background-color  0.3s ease; /* Animation au survol */
   margin-right: 50px; 
   margin-top: 12px;
 }
 
 /* Style au survol du bouton de catégorie */
 select:hover {
-  background-color: #d4b3d49c;  /* Couleur de fond plus foncée au survol */
+  background-color: rgb(238, 189, 197); /* Couleur de fond plus foncée au survol */
 }
+
 
 /* Style au focus du bouton de catégorie */
 select:focus {
