@@ -50,7 +50,6 @@ const LogoPage = () => {
           </div>
         ))}
       </div>
-      <button className="button">Continuer</button>
 
     </div>
   );

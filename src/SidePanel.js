@@ -6,49 +6,31 @@ import './SidePanel.css';
 
 const SidePanel = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const navigate = useNavigate(); // Initialize navigate
+  const navigate = useNavigate();
 
   const toggleSidePanel = () => {
     setIsVisible(!isVisible);
   };
 
   const handleLogout = () => {
-    // Optional: Clear session data or authentication token
-    localStorage.removeItem('authToken'); // Example of clearing token from localStorage
-    sessionStorage.clear(); // Clear sessionStorage (if used)
-
-    // Navigate to the login page after logging out
-    navigate('/login');
+    localStorage.removeItem('authToken'); // Example of clearing token
+    sessionStorage.clear(); // Clear sessionStorage
+    navigate('/login'); // Redirect to login page
   };
 
   return (
     <div>
       <div className={`side-panel ${isVisible ? 'show' : 'hide'}`}>
         <button className="toggle-btn" onClick={toggleSidePanel}>
-          {isVisible ? "❌" : "☰"}
+          {isVisible ? '❌' : '☰'}
         </button>
         {isVisible && (
           <div className="menu-content">
             <h2>Menu</h2>
-            <button>
-              <Link to="/">Acceuil</Link>
-            </button>
-            <button>
-              <Link to="/Settings">Paramètres</Link>
-            </button>
-            <button onClick={() => alert('Ajouter une tâche')}>Ajouter une tâche</button>
-            <button onClick={() => alert('Voir les tâches')}>Voir les tâches</button>
-            <button>
-              <Link to="/Dashboard">Dashboard</Link>
-            </button>
-            <button onClick={() => alert('Notifications')}>Notifications</button>
-            <button>
-              <Link to="/FAQ">FAQ</Link>
-            </button>
-          
-            <button>
-              <Link to="/Login">Deconnexion</Link>
-            </button>
+            <button onClick={() => navigate('/')}>Acceuil</button>
+            <button onClick={() => navigate('/settings')}>Paramètres</button>
+            <button onClick={() => navigate('/FAQ')}>FAQ</button>
+            <button onClick={handleLogout}>Déconnexion</button>
           </div>
         )}
       </div>

@@ -64,7 +64,11 @@ function App() {
     setShowLogoPage(true);  // Affiche la LogoPage immédiatement après
   };
 
-  const handleLogin = () => setIsLoggedIn(true); // Fonction pour changer l'état de connexion
+  const handleLogin = () => setIsLoggedIn(true);
+  const handleLogout = () => {
+    setIsLoggedIn(false); // Update login state
+    Navigate('/login');   // Redirect to login page
+  };  
 
   const [tasks, setTasks] = useState([]);
   const [task, setTask] = useState('');
@@ -198,7 +202,7 @@ function App() {
           <>
             {isLoggedIn ? (
               <>
-                <SidePanel />
+                <SidePanel onLogout={handleLogout}/>
                 <Routes>
                   <Route path="/" element={
                     <>
@@ -258,10 +262,7 @@ function App() {
                   <Route path="/settings" element={<Settings />} />
                   <Route path="/FAQ" element={<FAQ />} />
                    {/* Dashboard */}
-                <Route
-                  path="/Dashboard"
-                  element={<Dashboard tasks={tasks} addTask={addTask} />}
-                />
+                <Route path="/Dashboard" element={<Dashboard tasks={tasks} addTask={addTask} />} />
                 </Routes>
               </>
             ) : (
